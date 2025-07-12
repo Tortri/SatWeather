@@ -1,0 +1,220 @@
+/* Google Fonts: Audiowide Font */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+/* Define low-key color variables */
+:root {
+    --primary-accent: #607d8b; /* Muted blue-grey */
+    --secondary-accent: #a7a7a7; /* Subtle light grey */
+    --border-color: #4a4a4a; /* Dark grey for borders */
+    --dark-background-main: #0f0e17; /* Main black background */
+    --dark-background-section: #1a1a1a; /* Slightly lighter black for sections */
+    --text-color: #ffffff; /* White text */
+    --error-color: #e74c3c; /* Red for error messages */
+    --success-color: #2ecc71; /* Green for success messages */
+}
+
+body {
+    margin: 0;
+    font-family: 'Audiowide', sans-serif;
+    background-color: var(--dark-background-main);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    padding: 20px; /* Add some padding around the content */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.satweather-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Space between input section and tool boxes */
+    max-width: 900px; /* Max width for the entire container */
+    width: 100%; /* Take full width up to max-width */
+    padding: 20px;
+    background-color: var(--dark-background-section); /* Slightly lighter background for the main container */
+    border-radius: 8px; /* Slightly rounded corners for modern look */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+/* Input Section Styling */
+.input-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%; /* Take full width of its parent */
+    max-width: 400px; /* Limit input section width */
+}
+
+.input-section label {
+    font-size: 1.1em;
+    color: var(--secondary-accent);
+}
+
+.input-section input[type="number"] {
+    padding: 12px 15px;
+    font-size: 1em;
+    background-color: #2a2a2a; /* Darker input background */
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    text-align: center;
+    width: calc(100% - 30px); /* Adjust for padding */
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-section input[type="number"]:focus {
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 8px rgba(96, 125, 139, 0.5); /* Soft glow on focus */
+}
+
+.input-section button {
+    padding: 12px 25px;
+    font-size: 1em;
+    background-color: var(--primary-accent); /* Muted blue-grey button */
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.input-section button:hover {
+    background-color: #455a64; /* Slightly darker on hover */
+    transform: translateY(-2px);
+}
+
+.input-section button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Container for Tool Boxes (Satellite and Weather Info) */
+.tool-boxes-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px;
+    flex-wrap: wrap; /* Allow boxes to wrap on smaller screens */
+    width: 100%;
+}
+
+/* Tool Box for Each Info Item */
+.tool-box {
+    background-color: var(--dark-background-section);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%; /* Take full width of its container up to max-width */
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Softer shadow */
+    flex-grow: 1; /* Allow boxes to grow and fill space */
+    box-sizing: border-box;
+}
+
+.tool-box h3 {
+    color: var(--primary-accent); /* Muted blue-grey for headings */
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tool-box p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: var(--secondary-accent);
+}
+
+.tool-box p strong {
+    color: var(--text-color);
+}
+
+/* Message Box Styling */
+.message-box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1000;
+    min-width: 250px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.message-box.error {
+    background-color: var(--error-color);
+}
+
+.message-box.success {
+    background-color: var(--success-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .satweather-container {
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .input-section input[type="number"],
+    .input-section button {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .tool-boxes-container {
+        flex-direction: column; /* Stack boxes vertically on small screens */
+        align-items: center;
+    }
+
+    .tool-box {
+        width: 90%; /* Adjust width for stacked boxes */
+        max-width: none; /* Remove max-width constraint */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .satweather-container {
+        gap: 15px;
+    }
+
+    .input-section label {
+        font-size: 1em;
+    }
+
+    .input-section input[type="number"],
+    .input-section button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .tool-box h3 {
+        font-size: 1.3em;
+    }
+
+    .tool-box p {
+        font-size: 0.85em;
+    }
+}
